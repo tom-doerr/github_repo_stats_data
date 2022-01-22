@@ -1,0 +1,32 @@
+name: fetch-repository-stats
+concurrency: fetch-repository-stats
+
+on:
+  schedule:
+    - cron: "0 23 * * *"
+  workflow_dispatch:
+
+jobs:
+  run-ghrs-with-matrix:
+    name: repostats-for-nice-projects
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # The repositories to generate reports for.
+        statsRepo: ['tom-doerr/fix', 'tom-doerr/TecoGAN-Docker']
+      # Do not cancel&fail all remaining jobs upon first job failure.
+      fail-fast: false
+      # Help avoid commit conflicts. Note(JP): this should not be
+      # necessary anymore, feedback appreciated
+      max-parallel: 1
+    steps:
+      - name: run-ghrs
+        uses: jgehrcke/github-repo-stats@v1.2.0
+        with:
+          # Repo to fetch stats for and to generate the report for.
+          repository: ${{ matrix.statsRepo }}
+          # Token that can read the stats repository and that
+          # can push to the data repository.
+          ghtoken: ${{ secrets.ghrs_github_api_token }}
+          # Data branch: Branch to push data to (in the data repo).
+          databranch: main
