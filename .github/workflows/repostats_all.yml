@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         # The repositories to generate reports for.
-        statsRepo: ['tom-doerr/fix', 'tom-doerr/TecoGAN-Docker']
+        statsRepo: ['tom-doerr/zsh_codex', 'tom-doerr/codex-readme', 'tom-doerr/vim_codex', 'tom-doerr/TecoGAN-Docker', 'tom-doerr/fix', 'tom-doerr/github_stats']
       # Do not cancel&fail all remaining jobs upon first job failure.
       fail-fast: false
       # Help avoid commit conflicts. Note(JP): this should not be
