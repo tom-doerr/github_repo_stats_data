@@ -29,4 +29,4 @@ jobs:
           # can push to the data repository.
           ghtoken: ${{ secrets.ghrs_github_api_token }}
           # Data branch: Branch to push data to (in the data repo).
-          databranch: main
+          databranch: master
